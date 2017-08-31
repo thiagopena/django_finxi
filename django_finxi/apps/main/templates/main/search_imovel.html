@@ -1,0 +1,60 @@
+{%extends 'main/base.html'%}
+
+{%block title%}Busca Imóvel{%endblock%}
+{%block content%}
+<section class="content">
+	<div class="container-fluid">
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--Header-->
+			<div class="form-header">
+				<h3>Busca por "{{request.GET.endereco_imovel}}" {% if request.GET.tipo_imovel != "todos" %}para tipo {{request.GET.tipo_imovel.title}}{% endif %}</h3>
+				<small style="padding-left:10px">{{imoveis_encontrados.count}} resultados encontrados</small>
+			</div>
+			<!--# Header-->
+
+			{% for imovel in imoveis_encontrados %}
+			<div class="col-sm-3 col-xs-3" style="margin-top:20px;margin-bottom:20px;">
+				<div class="panel panel-default imovel-block" data-href="{% url 'main:detalharimovelview' imovel.id %}">
+					<div class="panel-body">
+						<img src="/media/{{imovel.foto}}" class="img-responsive" style="width:150px;height:150px;">
+						<div class="caption">
+							<h4 style="font-weight:bold;">{{imovel.descricao_curta}}</h4>
+						</div>
+					</div>
+					<table class="table" style="padding: 0; margin: 0;">
+						<tr>
+							<td>Tipo</td>
+							<td style="font-weight:bold;">{{imovel.get_tipo_display}}</td>
+						</tr>
+						<tr>
+							<td>Á partir de</td>
+							<td style="font-weight:bold;">{{imovel.format_valor}}</td>
+						</tr>
+						<tr>
+							<td>Área</td>
+							<td style="font-weight:bold;">{{imovel.format_area}}</td>
+						</tr>
+						<tr>
+							<td>Cidade</td>
+							<td style="font-weight:bold;">{{imovel.format_municipio}}</td>
+						</tr>
+						<tr>
+							<td>Bairro</td>
+							<td style="font-weight:bold;">{{imovel.format_bairro}}</td>
+						</tr>
+					</table>
+				</div>
+				{% if request.user.is_authenticated %}
+				<div>
+				<button type="button" class="btn btn-danger pull-left delete_btn" id="{{imovel.id}}">Deletar</button>
+					<a class="btn btn-primary pull-right" href="{% url 'main:editarimovelview' imovel.id %}">Editar</a>
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</section>
+{%endblock%}

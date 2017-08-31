@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+	{% load staticfiles %}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<!-- Bootstrap Css -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Custom Css -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+	<!-- Jquery 3.0.0 Js -->
+	<script src="{% static 'js/jquery/jquery-3.0.0.min.js' %}"></script>
+
+	<title>Login</title>
+</head>
+<body>
+	<div class = "container">
+		<div class="login-box">
+			<form action="" method="post" class="form-login">     
+				{% csrf_token %}  
+				<h3 class="form-login-header">Login</h3>
+				<br/>
+				{% if form.errors %}
+				{% for field in form %}
+				{% for error in field.errors %}
+				<label class="login-error"><strong>{{error}}</strong></label>
+				{% endfor %}
+				{% endfor %}
+				{% for error in form.non_field_errors %}
+				<label class="login-error"><strong>{{error}}</strong></label>
+				{% endfor %}
+				{% endif %}
+				<label>Nome de usuário</label><input type="text" class="form-control" name="username" placeholder="Usuário" required="" autofocus="" />
+				<label>Senha</label><input type="password" class="form-control" name="password" placeholder="Senha" required=""/>     		  
+				<button class="btn btn-lg btn-primary btn-block"  value="login" type="submit">Entrar</button>  			
+			</form>			
+		</div>
+	</div>
+
+	<!-- Bootstrap Js -->
+	<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

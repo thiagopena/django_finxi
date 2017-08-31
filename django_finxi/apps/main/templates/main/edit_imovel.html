@@ -1,0 +1,28 @@
+{%extends 'main/base.html'%}
+
+{%block title%}Editar {{object}}{%endblock%}
+{%block content%}
+<section class="content">
+	<div class="container-fluid">
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--Header-->
+			<div class="form-header">
+				<h3>Editar {{object}}</h3>
+				<div><small>Campos marcados com <strong style="color:red;">*</strong> são obrigatórios.</small></div>
+			</div>
+			<!--# Header-->
+
+			{% include 'main/form_imovel.html' %}
+
+		</div>
+
+	</div>
+</section>
+{%endblock%}
+
+{% block js %}
+ <script type="text/javascript">
+    $.Admin.maskInput.maskImovel();
+ </script>
+{% endblock %}

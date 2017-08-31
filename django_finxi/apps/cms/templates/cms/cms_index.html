@@ -1,0 +1,18 @@
+{%extends 'main/base.html'%}
+
+{%block title%}Busca Imóvel{%endblock%}
+{%block content%}
+
+<div style="padding:0px 15px 15px 15px">
+	<a class="btn btn-success" href="{% url 'main:adicionaimovelview' %}">Cadastrar Imóvel</a>
+</div>
+
+{% include 'main/list_imovel.html' %}
+
+{%endblock%}
+
+{% block js %}
+<script type="text/javascript">
+	$.Admin.ListaImoveis.init();
+</script>
+{% endblock %}

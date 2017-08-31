@@ -1,0 +1,12 @@
+{%extends 'main/base.html'%}
+
+{%block title%}Busca Imóvel{%endblock%}
+{%block content%}
+{% include 'main/list_imovel.html' %}
+{%endblock%}
+
+{% block js %}
+<script type="text/javascript">
+	$.Admin.ListaImoveis.init();
+</script>
+{% endblock %}
