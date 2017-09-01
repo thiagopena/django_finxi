@@ -12,7 +12,7 @@
 			<div class="col-sm-3 col-xs-3" style="margin-top:20px;margin-bottom:20px;">
 				<div class="panel panel-default imovel-block" data-href="{% url 'main:detalharimovelview' imovel.id %}">
 					<div class="panel-body">
-						<img src="{{imovel.foto.url}}" class="img-responsive" style="width:150px;height:150px;">
+						<img {% if USE_AWS_S3 %}src="{{imovel.foto.url}}"{% else %}src="/media/{{imovel.foto}}"{% endif %} class="img-responsive" style="width:150px;height:150px;">
 						<div class="caption">
 							<h4 style="font-weight:bold;">{{imovel.descricao_curta}}</h4>
 						</div>
